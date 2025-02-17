@@ -25,8 +25,8 @@
 ```
 {
 	"function_name": {
-		"function_args": null (or [] if args exists),
-		"function_iters": <int>
+		"args": null (or [] if args exists),
+		"iters": <int>
 	},
 	...
 }
