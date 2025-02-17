@@ -37,19 +37,19 @@
 
 ```
 {
-	"fibonacc_init": {
+	"fibonacci_init": {
 		"args": [1, 1],
 		"iters": 1
 	},
-	"fibonacc_next": {
+	"fibonacci_next": {
 		"args": null,
 		"iters": 5
 	},
-	"fibonacc_current": {
+	"fibonacci_current": {
 		"args": null,
 		"iters": 1
 	},
-	"fibonacc_index": {
+	"fibonacci_index": {
 		"args": null,
 		"iters": 1
 	}
