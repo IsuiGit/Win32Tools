@@ -23,11 +23,11 @@ class App(Tk):
         self.text.pack(fill=BOTH, expand=1)
         # Config
         self.config(menu=menubar)
-        
+
     def getDllPath(self):
         try:
             filepath = filedialog.askopenfilename(
-                title="Выбор файла", 
+                title="Выбор файла",
                 filetypes=[("Dynamic Link Library", "*.dll")]
             )
             if filepath != "":
@@ -35,11 +35,11 @@ class App(Tk):
                 self.text.insert(END, f"dll lib {filepath} loaded\n")
         except Exception as e:
             self.text.insert(END, f"{e}\n")
-    
+
     def getTestCasePath(self):
         try:
             filepath = filedialog.askopenfilename(
-                title="Выбор файла", 
+                title="Выбор файла",
                 filetypes=[("JSON file", "*.json")]
             )
             if filepath != "":
@@ -47,11 +47,12 @@ class App(Tk):
                 self.text.insert(END, f"test case {filepath} loaded\n")
         except Exception as e:
             self.text.insert(END, f"{e}\n")
-    
+
     def runDllTests(self):
-        from ctools import dllFuncTest
+        from c_tools import dllFuncTest
+        from t_tools import runThread
         if not self.dll_path or not self.case_path:
             self.text.insert(END, "No dll modules or test case file imported\n")
         else:
-            dllFuncTestResponse = dllFuncTest(self.dll_path, self.case_path)
-            self.text.insert(END, '\n'.join([str(response) for response in dllFuncTestResponse]))
+            dllFuncTestResponse = runThread(dllFuncTest, [self.dll_path, self.case_path])
+            self.text.insert(END, '\n'.join([str(response) for response in dllFuncTestResponse])+'\n')

@@ -21,4 +21,3 @@ def dllFuncTest(path, case):
         except Exception as e:
             dllFuncResponse.append(repr(e))
     return dllFuncResponse
-        
