@@ -74,7 +74,7 @@
 	from t_tools import runThread
 	from shedule import runProcess
 	...
-					dllFuncTestResponse = runThread(runProcess, args=[self.dll_path, self.case_path])
+	dllFuncTestResponse = runThread(runProcess, args=[self.dll_path, self.case_path])
 	...
 	```
 3. Isolated Mode: все тесты запускаются в изолированном потоке, а результаты записываются в `sys.stdout`.
