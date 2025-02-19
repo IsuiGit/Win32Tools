@@ -51,10 +51,10 @@ class App(Tk):
             self.text.insert(END, f"{e}\n")
 
     def runDllTests(self):
-        from c_tools import dllFuncTest
         from t_tools import runThread
+        from shedule import runProcess
         if not self.dll_path or not self.case_path:
             self.text.insert(END, "No dll modules or test case file imported\n")
         else:
-            dllFuncTestResponse = runThread(dllFuncTest, [self.dll_path, self.case_path])
-            self.text.insert(END, '\n'.join([str(response) for response in dllFuncTestResponse])+'\n')
+            dllFuncTestResponse = runThread(runProcess, args=[self.dll_path, self.case_path])
+            self.text.insert(END, dllFuncTestResponse)

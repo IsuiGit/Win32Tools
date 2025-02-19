@@ -21,4 +21,5 @@ class ReturnableThread(threading.Thread):
 def runThread(func, args=None):
     th = ReturnableThread(target=func, args=args, daemon=True)
     th.start()
-    return th.join()
+    response = th.join()
+    return response
