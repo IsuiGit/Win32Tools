@@ -1,5 +1,4 @@
 import subprocess
-import json
 
 def runProcess(path, case):
     if not path or not case:

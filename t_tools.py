@@ -1,5 +1,4 @@
 import threading
-import sys
 
 class ReturnableThread(threading.Thread):
     def __init__(self, *args, **kwargs):
