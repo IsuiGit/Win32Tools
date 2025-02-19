@@ -16,8 +16,10 @@ class App(Tk):
         filemenu = Menu(menubar, tearoff=0)
         filemenu.add_command(label="Load .dll", command=self.getDllPath)
         filemenu.add_command(label="Load case file", command=self.getTestCasePath)
-        filemenu.add_command(label="Run tests", command=self.runDllTests)
+        runmenu = Menu(menubar, tearoff=0)
+        runmenu.add_command(label="Run tests", command=self.runDllTests)
         menubar.add_cascade(label="File", menu=filemenu)
+        menubar.add_cascade(label="Run", menu=runmenu)
         # Textarea
         self.text = Text(wrap="word")
         self.text.pack(fill=BOTH, expand=1)

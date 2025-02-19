@@ -17,7 +17,7 @@ def dllFuncTest(path, case):
                     response = func(*args["args"])
                 else:
                     response = func()
-                dllFuncResponse.append(f"{case}:{response}")
+                dllFuncResponse.append(f"{case}: {response}")
         except Exception as e:
             dllFuncResponse.append(repr(e))
     return dllFuncResponse
