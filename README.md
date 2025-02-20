@@ -63,17 +63,17 @@
 ### Updates
 
 #### Minor 0.3 update 19.02.25:
-1. Функции тестого модуля c_tools теперь запускаются через потоковую обертку модуля t_tools[threading]
-2. t_tools.py - новый модуль с модифицированным классом Thread, для запуска и получения ответа потока выполнения
+- Функции тестого модуля c_tools теперь запускаются через потоковую обертку модуля t_tools[threading]
+- t_tools.py - новый модуль с модифицированным классом Thread, для запуска и получения ответа потока выполнения
 
 #### Major 1.0 update 19.02.25:
-1. Новый модуль `shedule.py`: запуск и исполнение модуля `c_tools.py` через класс `Popen` библиотеки `subprocess`
+- Новый модуль `shedule.py`: запуск и исполнение модуля `c_tools.py` через класс `Popen` библиотеки `subprocess`
 	```
 	...
 	p = subprocess.Popen(["python", "c_tools.py", path, case], stdout=subprocess.PIPE)
 	...
 	```
-2. Обновленные зависимости: вызов теста `.dll` библиотек по схеме `gui -> t_tools.runThread(shedule.runProcess, args=*args)`
+- Обновленные зависимости: вызов теста `.dll` библиотек по схеме `gui -> t_tools.runThread(shedule.runProcess, args=*args)`
 	```
 	from t_tools import runThread
 	from shedule import runProcess
@@ -81,10 +81,10 @@
 	dllFuncTestResponse = runThread(runProcess, args=[self.dll_path, self.case_path])
 	...
 	```
-3. Isolated Mode: все тесты запускаются в изолированном потоке, а результаты записываются в `sys.stdout`
+- Isolated Mode: все тесты запускаются в изолированном потоке, а результаты записываются в `sys.stdout`
 
 #### Minor 1.1.2(2225) update 20.02.2025:
-1. Исправлен баг: `c_tool.py not found` - установлены относительные пути поиска исполняемых скриптов
+- Исправлен баг: `c_tool.py not found` - установлены относительные пути поиска исполняемых скриптов
 
 #### Minor 1.2.0(2225)a 20.02.2025
-1. Доработана функция `ServiceFuncTest` - на данный момент функция получает сведения о .dll компонентах службы и выгружает их из тест-кейсов. В ответ возвращается список найденных .dll внутри `memory_maps` процесса
+- Доработана функция `ServiceFuncTest` - на данный момент функция получает сведения о .dll компонентах службы и выгружает их из тест-кейсов. В ответ возвращается список найденных .dll внутри `memory_maps` процесса
