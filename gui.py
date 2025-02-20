@@ -11,8 +11,8 @@ class App(Tk):
         self.case_path = None
         self.service_name = None
         # Presets
-        self.title("DLL Testing App")
-        self.geometry("640x480")
+        self.title("Win32 components testing")
+        self.geometry("800x600")
         # Menu
         menubar = Menu(self)
         dllmenu = Menu(menubar, tearoff=0)
