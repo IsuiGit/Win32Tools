@@ -63,14 +63,14 @@
 ### Updates
 
 #### Minor 0.3 update 19.02.25:
-- Функции тестого модуля c_tools теперь запускаются через потоковую обертку модуля t_tools[threading]
+- Функции тестового модуля c_tools теперь запускаются через потоковую обертку модуля t_tools[threading]
 - t_tools.py - новый модуль с модифицированным классом Thread, для запуска и получения ответа потока выполнения
 
 #### Major 1.0 update 19.02.25:
 - Новый модуль `shedule.py`: запуск и исполнение модуля `c_tools.py` через класс `Popen` библиотеки `subprocess`
 	```
 	...
-	p = subprocess.Popen(["python", "c_tools.py", path, case], stdout=subprocess.PIPE)
+	p = subprocess.Popen(["python", tool, path, case], stdout=subprocess.PIPE)
 	...
 	```
 - Обновленные зависимости: вызов теста `.dll` библиотек по схеме `gui -> t_tools.runThread(shedule.runProcess, args=*args)`
