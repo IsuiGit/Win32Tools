@@ -70,7 +70,7 @@ class App(Tk):
         if not self.dll_path or not self.case_path:
             self.text.insert(END, "No dll modules or test case file imported\n")
         else:
-            dllFuncTestResponse = runThread(runProcess, args=["c_tools.py", self.dll_path, self.case_path])
+            dllFuncTestResponse = runThread(runProcess, args=["./c_tools.py", self.dll_path, self.case_path])
             self.text.insert(END, dllFuncTestResponse+'\n')
 
     def runServiceTests(self):
@@ -79,5 +79,5 @@ class App(Tk):
         if not self.service_name or not self.case_path:
             self.text.insert(END, "No dll modules or test case file imported\n")
         else:
-            serviceFuncTestResponse = runThread(runProcess, args=["p_tools.py", self.service_name, self.case_path])
+            serviceFuncTestResponse = runThread(runProcess, args=["./p_tools.py", self.service_name, self.case_path])
             self.text.insert(END, serviceFuncTestResponse+'\n')
