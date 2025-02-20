@@ -17,14 +17,15 @@ class App(Tk):
         menubar = Menu(self)
         dllmenu = Menu(menubar, tearoff=0)
         dllmenu.add_command(label="Import .dll", command=self.getDllPath)
-        dllmenu.add_command(label="Import test case", command=self.getTestCasePath)
-        dllmenu.add_command(label="Run tests", command=self.runDllTests)
+        dllmenu.add_command(label="Run .dll tests", command=self.runDllTests)
         servicemenu = Menu(menubar, tearoff=0)
-        servicemenu.add_command(label="Get service by name", command=self.getServiceName)
-        servicemenu.add_command(label="Import test case", command=self.getTestCasePath)
-        servicemenu.add_command(label="Run tests", command=self.runServiceTests)
+        servicemenu.add_command(label="Service name", command=self.getServiceName)
+        servicemenu.add_command(label="Run service tests", command=self.runServiceTests)
+        casemenu = Menu(menubar, tearoff=0)
+        casemenu.add_command(label="Import test case", command=self.getTestCasePath)
         menubar.add_cascade(label="DLL", menu=dllmenu)
-        menubar.add_cascade(label="External win32 Services", menu=servicemenu)
+        menubar.add_cascade(label="Win32 services", menu=servicemenu)
+        menubar.add_cascade(label="Test cases", menu=casemenu)
         # Textarea
         self.text = Text(wrap="word")
         self.text.pack(fill=BOTH, expand=1)
@@ -66,20 +67,20 @@ class App(Tk):
 
     def runDllTests(self):
         from t_tools import runThread
-        from shedule import runProcess
+        from schedule import runProcess
         if not self.dll_path or not self.case_path:
             self.text.insert(END, "No dll modules or test case file imported\n")
-            self.text.insert(END, ''.join("-" for i in range(32))+'\n')
+            self.text.insert(END, ''.join("-" for i in range(50))+'\n')
         else:
             dllFuncTestResponse = runThread(runProcess, args=["./c_tools.py", self.dll_path, self.case_path])
             self.text.insert(END, dllFuncTestResponse+'\n')
-            self.text.insert(END, ''.join("-" for i in range(32))+'\n')
+            self.text.insert(END, ''.join("-" for i in range(50))+'\n')
 
     def runServiceTests(self):
         from t_tools import runThread
-        from shedule import runProcess
+        from schedule import runProcess
         if not self.service_name or not self.case_path:
-            self.text.insert(END, "No dll modules or test case file imported\n")
+            self.text.insert(END, "No service name or test case file imported\n")
             self.text.insert(END, ''.join("-" for i in range(50))+'\n')
         else:
             serviceFuncTestResponse = runThread(runProcess, args=["./p_tools.py", self.service_name, self.case_path])
