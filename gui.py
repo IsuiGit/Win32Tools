@@ -24,7 +24,7 @@ class App(Tk):
         servicemenu.add_command(label="Import test case", command=self.getTestCasePath)
         servicemenu.add_command(label="Run tests", command=self.runServiceTests)
         menubar.add_cascade(label="DLL", menu=dllmenu)
-        menubar.add_cascade(label="Win Services", menu=servicemenu)
+        menubar.add_cascade(label="External win32 Services", menu=servicemenu)
         # Textarea
         self.text = Text(wrap="word")
         self.text.pack(fill=BOTH, expand=1)
@@ -45,7 +45,7 @@ class App(Tk):
 
     def getServiceName(self):
         try:
-            serviceName = simpledialog.askstring(title="Service name", prompt="Enter the service name to test")
+            serviceName = simpledialog.askstring("Get service name", "Enter the service name for the test\t\t\t")
             if serviceName != "":
                 self.service_name = serviceName
                 self.text.insert(END, f"service name is: {serviceName}\n")
@@ -69,15 +69,19 @@ class App(Tk):
         from shedule import runProcess
         if not self.dll_path or not self.case_path:
             self.text.insert(END, "No dll modules or test case file imported\n")
+            self.text.insert(END, ''.join("-" for i in range(32))+'\n')
         else:
             dllFuncTestResponse = runThread(runProcess, args=["./c_tools.py", self.dll_path, self.case_path])
             self.text.insert(END, dllFuncTestResponse+'\n')
+            self.text.insert(END, ''.join("-" for i in range(32))+'\n')
 
     def runServiceTests(self):
         from t_tools import runThread
         from shedule import runProcess
         if not self.service_name or not self.case_path:
             self.text.insert(END, "No dll modules or test case file imported\n")
+            self.text.insert(END, ''.join("-" for i in range(50))+'\n')
         else:
             serviceFuncTestResponse = runThread(runProcess, args=["./p_tools.py", self.service_name, self.case_path])
             self.text.insert(END, serviceFuncTestResponse+'\n')
+            self.text.insert(END, ''.join("-" for i in range(50))+'\n')

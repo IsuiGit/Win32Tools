@@ -30,4 +30,7 @@ def dllFuncTest(path=INPUTS[1], case=INPUTS[2]):
 
 if __name__=='__main__':
     dllFuncTestStdOut = dllFuncTest()
-    sys.stdout.buffer.write(dllFuncTestStdOut.encode())
+    if isinstance(dllFuncTestStdOut, bytes):
+        sys.stdout.buffer.write(dllFuncTestStdOut)
+    else:
+        sys.stdout.buffer.write(dllFuncTestStdOut.encode())
