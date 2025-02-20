@@ -51,8 +51,8 @@
 {
 	"dll_component_name": {
 		"function_name":{
-		"args": null (or [] if args exists),
-		"iters": <int>
+			"args": null (or [] if args exists),
+			"iters": <int>
 		},
 	}
 	...
