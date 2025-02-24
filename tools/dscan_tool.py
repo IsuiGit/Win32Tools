@@ -14,6 +14,9 @@ def dllScan(path=INPUTS[1]):
     try:
         dllScanResponse = []
         pe = pefile.PE(path)
+        if hasattr(pe, 'OPTIONAL_HEADER'):
+            dllScanResponse.append('\nENTRY_POINT ADDRESS\n')
+            dllScanResponse.append(hex(pe.OPTIONAL_HEADER.AddressOfEntryPoint))
         if hasattr(pe, 'DIRECTORY_ENTRY_EXPORT'):
             dllScanResponse.append('\nENTRY_EXPORT LIST\n')
             for export_ in pe.DIRECTORY_ENTRY_EXPORT.symbols:
