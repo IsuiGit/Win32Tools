@@ -53,7 +53,7 @@
 
 ### Updates
 
-### Поддерживаемые C-types
+### Поддерживаемые C types
 
  `char*` - возвращаемый тип данных `== string/char*/const char*`  
  `void*` - возвращаемый тип данных `void`  
