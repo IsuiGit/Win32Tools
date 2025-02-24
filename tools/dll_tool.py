@@ -18,7 +18,13 @@ def dllFuncTest(path=INPUTS[1], case=INPUTS[2]):
                 for i in range(args["iters"]):
                     func = getattr(dll, case)
                     if args["args"]:
-                        response = func(*args["args"])
+                        c_args = []
+                        for arg in args["args"]:
+                            if isinstance(arg, str):
+                                c_args.append(bytes(arg))
+                            else:
+                                c_args.append(arg)
+                        response = func(*c_args)
                     else:
                         response = func()
                     dllFuncResponse.append(f"{case}: {response}")
