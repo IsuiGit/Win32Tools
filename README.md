@@ -37,7 +37,7 @@
 {
 	"function_name": {
 		"args": null (or [] if args exists),
-		"restype": "c_data_type"
+		"restype": C type
 		"iters": <int>
 	},
 	...
