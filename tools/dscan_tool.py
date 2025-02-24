@@ -12,7 +12,7 @@ def dllScan(path=INPUTS[1]):
     finally:
         globals()['pefile'] = importlib.import_module('pefile')
     try:
-        dllScanResponse = ['\nDLL ENTRY_EXPORT LIST\n']
+        dllScanResponse = ['\nENTRY_EXPORT LIST\n']
         pe = pefile.PE(path)
         if hasattr(pe, 'DIRECTORY_ENTRY_EXPORT'):
             for export_ in pe.DIRECTORY_ENTRY_EXPORT.symbols:
