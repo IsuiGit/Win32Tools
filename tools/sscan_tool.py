@@ -24,8 +24,8 @@ def serviceScan(name=INPUTS[1]):
         maps = []
         for memory_map in info_["memory_maps"]:
             if os.path.split(memory_map[0])[1].endswith('.dll') or os.path.split(memory_map[0])[1].endswith('.exe'):
-                maps.append(os.path.split(memory_map[0])[1])
-        serviceScanResponse["memory_maps"] = "".join(["\t\t\t", ", ".join(maps)])
+                maps.append(memory_map[0])
+        serviceScanResponse["memory_maps"] = "".join(["\t\t\t", "\n".join(maps)])
         return "\n".join([k+":"+v for k,v in serviceScanResponse.items()])
     except psutil.NoSuchProcess:
         return f"No service named {INPUTS[1]}"

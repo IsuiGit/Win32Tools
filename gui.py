@@ -19,15 +19,20 @@ class App(Tk):
         analysismenu = Menu(menubar, tearoff=0)
         analysismenu.add_command(label="Entry scan", command=self.dllScan)
         analysismenu.add_command(label="Service scan", command=self.serviceScan)
+        editmenu = Menu(menubar, tearoff=0)
+        editmenu.add_command(label="Clear", command=self.clearOutput)
         menubar.add_cascade(label=".dll", menu=dllmenu)
         menubar.add_cascade(label="Win32 services", menu=servicemenu)
         menubar.add_cascade(label="Analysis", menu=analysismenu)
+        menubar.add_cascade(label="Edit", menu=editmenu)
         # Textarea
         self.text = st.ScrolledText(wrap="word")
         self.text.pack(fill=BOTH, expand=1)
-        self.text.bind("<Key>", lambda e: "break")
         # Config
         self.config(menu=menubar)
+
+    def clearOutput(self):
+        self.text.delete('1.0', END)
 
     def serviceScan(self):
         service_name = None
