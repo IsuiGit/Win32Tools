@@ -21,7 +21,7 @@ def dllFuncTest(path=INPUTS[1], case=INPUTS[2]):
                         c_args = []
                         for arg in args["args"]:
                             if isinstance(arg, str):
-                                c_args.append(bytes(arg))
+                                c_args.append(bytes(arg, "utf-8"))
                             else:
                                 c_args.append(arg)
                         response = func(*c_args)
