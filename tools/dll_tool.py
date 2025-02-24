@@ -8,6 +8,12 @@ def loadJSON(path):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+def bytesTranslation(obj):
+    if isinstance(obj, str):
+        return bytes(obj, "utf-8")
+    else:
+        return obj
+
 def dllFuncTest(path=INPUTS[1], case=INPUTS[2]):
     try:
         dllFuncResponse = []
@@ -20,10 +26,7 @@ def dllFuncTest(path=INPUTS[1], case=INPUTS[2]):
                     if args["args"]:
                         c_args = []
                         for arg in args["args"]:
-                            if isinstance(arg, str):
-                                c_args.append(bytes(arg, "utf-8"))
-                            else:
-                                c_args.append(arg)
+                            c_args.append(bytesTranslation(arg))
                         response = func(*c_args)
                     else:
                         response = func()
