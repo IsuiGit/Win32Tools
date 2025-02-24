@@ -17,7 +17,7 @@ class App(Tk):
         servicemenu = Menu(menubar, tearoff=0)
         servicemenu.add_command(label="Run service calls --IN WORK")
         analysismenu = Menu(menubar, tearoff=0)
-        analysismenu.add_command(label=".dll entry scan", command=self.dllScan)
+        analysismenu.add_command(label="Entry scan", command=self.dllScan)
         analysismenu.add_command(label="Service scan", command=self.serviceScan)
         menubar.add_cascade(label=".dll", menu=dllmenu)
         menubar.add_cascade(label="Win32 services", menu=servicemenu)
@@ -51,7 +51,7 @@ class App(Tk):
     def dllScan(self):
         dll_path = None
         try:
-            filepath = filedialog.askopenfilename(title="Выбор файла", filetypes=[("Dynamic Link Library", "*.dll")])
+            filepath = filedialog.askopenfilename(title="Выбор файла", filetypes=[("Dynamic Link Library", "*.dll"), ("Executable files", "*.exe")])
             if filepath != "":
                 dll_path = filepath
                 self.text.insert(END, f"dll lib {filepath} loaded\n")
