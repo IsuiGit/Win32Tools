@@ -1,4 +1,4 @@
-from ctypes import CDLL
+from ctypes import CDLL, c_char_p, c_void_p, c_bool, c_int
 import json
 import sys
 
@@ -14,6 +14,16 @@ def bytesTranslation(obj):
     else:
         return obj
 
+def restypeCast(type):
+    if type == "char*":
+        return c_char_p
+    elif type == "void*":
+        return c_void_p
+    elif type == "_Bool":
+        return c_bool
+    else:
+        return c_int
+
 def dllFuncTest(path=INPUTS[1], case=INPUTS[2]):
     try:
         dllFuncResponse = []
@@ -23,6 +33,7 @@ def dllFuncTest(path=INPUTS[1], case=INPUTS[2]):
             try:
                 for i in range(args["iters"]):
                     func = getattr(dll, case)
+                    func.restype = restypeCast(args["restype"])
                     if args["args"]:
                         c_args = []
                         for arg in args["args"]:
