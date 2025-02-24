@@ -17,7 +17,7 @@ class App(Tk):
         servicemenu = Menu(menubar, tearoff=0)
         servicemenu.add_command(label="Run service calls --IN WORK")
         analysismenu = Menu(menubar, tearoff=0)
-        analysismenu.add_command(label=".dll scan --IN WORK", command=self.dllScan)
+        analysismenu.add_command(label=".dll entry scan", command=self.dllScan)
         analysismenu.add_command(label="Service scan", command=self.serviceScan)
         menubar.add_cascade(label=".dll", menu=dllmenu)
         menubar.add_cascade(label="Win32 services", menu=servicemenu)

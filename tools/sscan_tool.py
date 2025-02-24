@@ -13,11 +13,20 @@ def serviceScan(name=INPUTS[1]):
     finally:
         globals()['psutil'] = importlib.import_module('psutil')
     try:
+        serviceScanResponse = {}
         service = psutil.win_service_get(name)
         pid = service.pid()
         process_ = psutil.Process(pid)
         info_ = process_.as_dict()
-        return '\n'.join([f"{k.upper()}:{v}" for k,v in info_.items() if v])
+        serviceScanResponse["username"] = "".join(["\t\t\t", info_["username"]])
+        serviceScanResponse["cwd"] = "".join(["\t\t\t", info_["cwd"]])
+        serviceScanResponse["pid"] = "".join(["\t\t\t", str(info_["pid"])])
+        maps = []
+        for memory_map in info_["memory_maps"]:
+            if os.path.split(memory_map[0])[1].endswith('.dll') or os.path.split(memory_map[0])[1].endswith('.exe'):
+                maps.append(os.path.split(memory_map[0])[1])
+        serviceScanResponse["memory_maps"] = "".join(["\t\t\t", ", ".join(maps)])
+        return "\n".join([k+":"+v for k,v in serviceScanResponse.items()])
     except psutil.NoSuchProcess:
         return f"No service named {INPUTS[1]}"
     except psutil.AccessDenied:
