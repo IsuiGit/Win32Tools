@@ -1,0 +1,6 @@
+MODULE_TOOL = "./tools/dll_tool.py"
+MODULE_SCAN_TOOL = "./tools/dscan_tool.py"
+SERVICE_TOOL = "./tools/service_tool.py"
+SERVICE_SCAN_TOOL = "./tools/sscan_tool.py"
+LURKER_TOOL = "./tools/lurker.py"
+LURKER_INJECTION = "./tools/lurker.dll"
